@@ -11,7 +11,7 @@ body, html {
 }
 
 .instructions {
-  background-color: #333333;
+  background-color: #A81F1F;
   color: #DDDDDD;
   padding: 15px;
 }
@@ -49,9 +49,8 @@ body, html {
 }
 
 .navbar {
-  background-color: #333333;
+  background-color: #1C406E;
   width: 100%;
-  border-radius: 0px;
 }
 
 ul {
@@ -69,8 +68,9 @@ li a {
   display: block;
   color: white;
   text-align: center;
-  padding: 14px 16px;
+  padding: 15px 16px;
   text-decoration: none;
+  font-size: 16px;
 }
 
 /* Change the link color to #111 (black) on hover */

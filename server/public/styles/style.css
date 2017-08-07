@@ -44,6 +44,10 @@ body, html {
   background-color: #f8f8f8;
 }
 
+.btn-default {
+ padding: 25px 25px;
+}
+
 .btn-danger{
   margin-left: 10px;
 }

@@ -2,6 +2,19 @@ var passport = require('passport');
 var localStrategy = require('passport-local').Strategy;
 var encryptLib = require('../modules/encryption');
 var pool = require('../modules/pool.js');
+var pg = require('pg');
+
+//adding database to server
+var config = {
+  database: 'solo_project', // name of your database
+  host: 'localhost', // where is your database?
+  port: 5432, // port for the database
+  max: 10, // how many connections at one time?
+  idleTimeoutMillis: 30000 // 30 second time out
+};
+
+var pool = new pg.Pool(config);
+// Using a router drops the part of the url used to get here
 
 passport.serializeUser(function(user, done) {
     done(null, user.id);

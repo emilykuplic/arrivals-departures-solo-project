@@ -4,6 +4,20 @@ var path = require('path');
 var pool = require('../modules/pool.js');
 var encryptLib = require('../modules/encryption');
 
+var pg = require('pg');
+
+//adding database to server
+var config = {
+  database: 'solo_project', // name of your database
+  host: 'localhost', // where is your database?
+  port: 5432, // port for the database
+  max: 10, // how many connections at one time?
+  idleTimeoutMillis: 30000 // 30 second time out
+};
+
+var pool = new pg.Pool(config);
+// Using a router drops the part of the url used to get here
+
 // Handles request for HTML file
 router.get('/', function(req, res, next) {
   console.log('get /register route');

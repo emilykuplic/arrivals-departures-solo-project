@@ -6,6 +6,7 @@ myApp.factory('UserService', function($http, $location){
   return {
     userObject : userObject,
 
+
     getuser : function(){
       console.log('UserService -- getuser');
       $http.get('/user').then(function(response) {

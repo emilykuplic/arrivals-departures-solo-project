@@ -18,11 +18,13 @@ CREATE TABLE events (
 
 CREATE TABLE invitations (
     id serial PRIMARY KEY,
-    event_id integer REFERENCES events,
-    user_id integer REFERENCES users,
+    event_id integer,
+    user_id integer,
     arrival_date date,
     departure_date date,
-    number_attending integer
+    number_attending integer,
+    FOREIGN KEY (event_id) REFERENCES events,
+    FOREIGN KEY (user_id) REFERENCES users
 );
 
 Test Data
@@ -31,3 +33,9 @@ INSERT INTO "events" (event_name, event_description, starting_date, ending_date)
 
 INSERT INTO "invitations" (event_id, user_id, arrival_date, departure_date, number_attending) VALUES
 (1, 1, '06-30-2017', '07-4-2017', 2);
+
+Query
+GET for events
+SELECT "events"."event_name", "events"."event_description", "events"."starting_date","events"."ending_date"
+FROM "events" JOIN "invitations" ON "events"."id" = "invitations"."event_id"
+JOIN "users" ON "users"."id" = "invitations"."user_id" WHERE "users"."id" = 1 ;

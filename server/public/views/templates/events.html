@@ -1,18 +1,49 @@
 <div ng-include="'views/partials/usernav.html'"></div>
-<h2>Pending Events</h2>
-    <div class="list-group" id="pending">
-      <a href="#" class="list-group-item"></a>
-
-    </div>
-<h2>Confirmed Events</h2>
-    <div class="list-group" id="confirmed">
-      <a href="#" class="list-group-item">Use angular to populate data in list</a>
-    </div>
-<h2>Past Events</h2>
-    <div class="list-group" id="past">
-      <a href="#" class="list-group-item">Use angular to populate data in list</a>
+<div class="container">
+  <h2>Pending Events</h2>
+  <table class="table table-hover">
+    <tr>
+      <th>Event</th>
+      <th>Description</th>
+      <th>Event Dates</th>
+      <th></th>
+    </tr>
+    <tr ng-repeat="event in ec.eventObject.events" ng-if="event.arrival_date == null || event.departure_date == null || event.number_attending == null ">
+      <td>{{event.event_name}}</td>
+      <td>{{event.event_description}}</td>
+      <td>{{event.starting_date | date}} - {{event.ending_date | date}}</td>
+      <td><button class="btn btn-default">RSVP</button></td>
+    </tr>
+  </table>
+  <h2>Confirmed Events</h2>
+  <table>
+    <table class="table table-hover">
+      <tr>
+        <th>Event</th>
+        <th>Description</th>
+        <th>Attending</th>
+      </tr>
+      <tr ng-repeat="event in ec.eventObject.events" ng-if="event.arrival_date !==null  || event.departure_date !==null  || event.number_attending ==!null ">
+        <td>{{event.event_name}}</td>
+        <td>{{event.event_description}}</td>
+        <td>{{event.arrival_date | date}} - {{event.departure_date | date}}</td>
+      </tr>
+    </table>
+    <h2>Past Events - Not Filtering Yet</h2>
+    <table>
+      <table class="table table-hover">
+        <tr>
+          <th>Event</th>
+          <th>Description</th>
+          <th>Attended</th>
+        </tr>
+        <tr ng-repeat="event in ec.eventObject.events">
+          <td>{{event.event_name}}</td>
+          <td>{{event.event_description}}</td>
+          <td>{{event.arrival_date | date}} - {{event.departure_date | date}}</td>
+        </tr>
+      </table>
     </div>
   </div>
-</div>
-{{ec.eventObject.events.events[0].event_name}}
-{{ec.eventObject.events[0].event_name}}
+
+  {{ec.eventObject.events[0].event_name}}

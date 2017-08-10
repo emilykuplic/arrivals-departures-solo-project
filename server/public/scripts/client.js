@@ -40,6 +40,15 @@ myApp.config(function($routeProvider, $locationProvider) {
         }
       }
     })
+    .when('/events/rsvp', {
+      templateUrl: '/views/templates/eventrsvp.html',
+      controller: 'EventsController as ec',
+      resolve: {
+        getuser : function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
     .otherwise({
       redirectTo: 'home'
     });

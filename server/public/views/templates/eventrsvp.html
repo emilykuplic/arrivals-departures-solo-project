@@ -1,1 +1,11 @@
-<!--User Page-->
+<!--User Page Event RSVP-->
+<div ng-include="'views/partials/usernav.html'"></div>
+<div class="container">
+<h1>{{ec.data.selectedEvent.event_name}}<h1>
+  <h2>{{ec.data.selectedEvent.starting_date | date}} - {{event.ending_date | date}}</h2>
+  <h3>{{ec.data.selectedEvent.event_description}}</h3>
+
+<input type="text" name="arrival" placeholder="Arrival Date" ng-model="ec.data.selectedEvent.arrival_date">
+<input type="text" name="departure" placeholder="Departure Date" ng-model="ec.data.selectedEvent.departure_date">
+<input type="text" name="attending" placeholder="" ng-model="ec.data.selectedEvent.number_attending">
+</div>

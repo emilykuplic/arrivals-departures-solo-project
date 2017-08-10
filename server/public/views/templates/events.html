@@ -12,7 +12,9 @@
       <td>{{event.event_name}}</td>
       <td>{{event.event_description}}</td>
       <td>{{event.starting_date | date}} - {{event.ending_date | date}}</td>
-      <td><button class="btn btn-default">RSVP</button></td>
+      <td><button class="btn btn-default" ng-click="ec.getPendingEvent(event)">RSVP</button></td>
+      <td>{{event.event_id}}</td>
+
     </tr>
   </table>
   <h2>Confirmed Events</h2>
@@ -47,3 +49,7 @@
   </div>
 
   {{ec.eventObject.events[0].event_name}}
+testing 123<br>
+Number Attending:{{ec.eventObject.events[1].number_attending}}<br>
+Arrival Date: {{ec.eventObject.events[1].arrival_date}}<br>
+Departure Date:{{ec.eventObject.events[1].departure_date}}

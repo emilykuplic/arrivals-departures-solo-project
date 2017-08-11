@@ -1,11 +1,25 @@
 <!--User Page Event RSVP-->
 <div ng-include="'views/partials/usernav.html'"></div>
 <div class="container">
-<h1>{{ec.data.selectedEvent.event_name}}<h1>
-  <h2>{{ec.data.selectedEvent.starting_date | date}} - {{event.ending_date | date}}</h2>
-  <h3>{{ec.data.selectedEvent.event_description}}</h3>
+  <h1>{{ec.data.selectedEvent.event_name}}<h1>
+    <h2>{{ec.data.selectedEvent.starting_date | date}} - {{ec.data.selectedEvent.ending_date | date}}</h2>
+    <h3>{{ec.data.selectedEvent.event_description}}</h3>
+    <form>
 
-<input type="text" name="arrival" placeholder="Arrival Date" ng-model="ec.data.selectedEvent.arrival_date">
-<input type="text" name="departure" placeholder="Departure Date" ng-model="ec.data.selectedEvent.departure_date">
-<input type="text" name="attending" placeholder="" ng-model="ec.data.selectedEvent.number_attending">
-</div>
+      <div class="form-group">
+        <label for="formArrivalInput">Arrival Date</label>
+        <input class="form-control" id="formArrivalInput" type="date" name="arrival" placeholder="Arrival Date"
+        ng-model="ec.data.selectedEvent.arrival_date">
+      </div>
+      <div class="form-group">
+        <label for="formDepartureInput">Departure Date</label>
+        <input class="form-control" id="formDepartureInput" type="date" name="departure" placeholder="Departure Date" ng-model="ec.data.selectedEvent.departure_date">
+      </div>
+      <div class="form-group">
+        <label for="formAttendingInput">Number Attending</label>
+        <input class="form-control" id="formAttendingInput"  type="text" name="attending" placeholder="Number Attending" ng-model="ec.data.selectedEvent.number_attending">
+        <button class="btn btn-default" type="button" name="button" ng-click="ec.rsvpEvents(ec.data.selectedEvent)">Submit RSVP</button>
+      </div>
+
+    </form>
+  </div>

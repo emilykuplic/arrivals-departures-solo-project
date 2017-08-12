@@ -1,8 +1,8 @@
-<div class="navbar">
+<div class="navbar" ng-controller="NavController as nc">
   <div class="container">
     <ul>
       <li><a href="#/events">My Events</a></li>
-      <li><a href="#/user">User Home</a></li>
+      <li ng-if="nc.userObject.userName == 2"><a href="#/user">User Home</a></li>
     </ul>
   </div>
 </div>

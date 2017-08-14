@@ -22,9 +22,9 @@ myApp.controller('EventsController', function($http, $location, UserService, Eve
   function getAdminEvents(){
     console.log( 'in getEvents function' );
     // ajax call to server to get tasks
-    $http.get('/events').then(function(response){
-      vm.eventObject = response.data;
-      console.log('events.controller vmeventObject', vm.eventObject);
+    $http.get('/events/admin').then(function(response){
+      vm.allEventsObject = response.data;
+      console.log('events.controller vm.allEventsObject', vm.allEventsObject);
     }); // end success
   } // end getAdminEvents
 

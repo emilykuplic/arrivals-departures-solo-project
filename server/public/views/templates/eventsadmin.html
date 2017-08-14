@@ -9,7 +9,7 @@
     <th>Event Dates</th>
     <th></th>
   </tr>
-  <tr ng-repeat="event in ec.eventObject.events">
+  <tr ng-repeat="event in ec.allEventsObject.events">
     <td>{{event.event_name}}</td>
     <td>{{event.event_description}}</td>
     <td>{{event.starting_date | date}} - {{event.ending_date | date}}</td>
@@ -17,3 +17,4 @@
   </tr>
 </table>
 </div>
+{{vm.allEventsObject.events}}

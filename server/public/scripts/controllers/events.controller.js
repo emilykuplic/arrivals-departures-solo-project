@@ -50,6 +50,14 @@ myApp.controller('EventsController', function($http, $location, UserService, Eve
         }); // end success
       }; // end editEvents
 
+    vm.createEvent = function(createEvent){
+        console.log( 'in createEvent functon');
+        // ajax call to server to get tasks
+        $http.post('/events/create', createEvent ).then(function(response){
+          console.log('events.controller vmeventObject');
+        }); // end success
+      }; // end editEvents
+
 
   }); //end of controller
 

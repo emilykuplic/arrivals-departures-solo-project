@@ -76,7 +76,7 @@ router.put('/rsvp/', function(req, res){
       }
     } // end if
   }); // end pool
-}); // end of GET
+}); // end of PUT rsvp - user
 
 router.put('/edit/', function(req, res){
   var event = req.body;
@@ -91,11 +91,10 @@ router.put('/edit/', function(req, res){
       if(req.isAuthenticated()) {
         // We connected to the database!!!
         // Now we're going to GET things from the db
-        var queryText = 'UPDATE "invitations"  SET "arrival_date" = $1, "departure_date" =$2, "number_attending" =$3 ' +
-        'WHERE "user_id" = $4 AND "event_id" = $5;';
+        var queryText = 'INSERT INTO "events"  SET "event_name"=$1, "event_description"=$2, "starting_date"=$3, "ending_date"=$4,';
         // errorMakingQuery is a bool, result is an object
-        db.query(queryText,[event.selectedEvent.arrival_date, event.selectedEvent.departure_date, event.selectedEvent.number_attending,
-          event.selectedEvent.user_id, event.selectedEvent.event_id], function(errorMakingQuery, result){
+        db.query(queryText,[event.selectedEvent.event_name, event.selectedEvent.event_description, event.selectedEvent.starting_date,
+          event.selectedEvent.ending_date], function(errorMakingQuery, result){
           done();
           if(errorMakingQuery) {
             console.log('Attempted to query with', queryText);
@@ -113,6 +112,43 @@ router.put('/edit/', function(req, res){
       }
     } // end if
   }); // end pool
-}); // end of GET
+}); // end of PUT - edit event admin
+
+router.post('/create/', function(req, res){
+  var ev = req.body;
+  console.log('Post route called to event of', ev);
+  // errorConnecting is bool, db is what we query against,
+  // done is a function that we call when we're done
+  pool.connect(function(errorConnectingToDatabase, db, done){
+    if(errorConnectingToDatabase) {
+      console.log('Error connecting to the database.', req.body);
+      res.sendStatus(500);
+    } else {
+      if(req.isAuthenticated()) {
+        // We connected to the database!!!
+        // Now we're going to GET things from the db
+        var queryText = 'INSERT INTO "events" ("event_name", "event_description", "starting_date", "ending_date")' +
+        ' VALUES ($1, $2, $3, $4);';
+        // errorMakingQuery is a bool, result is an object
+        db.query(queryText,[ev.event_name, ev.event_description, ev.starting_date,
+          ev.ending_date], function(errorMakingQuery, result){
+          done();
+          if(errorMakingQuery) {
+            console.log('Attempted to query with', queryText);
+            console.log('Error making query', errorMakingQuery);
+            res.sendStatus(500);
+          } else {
+            // console.log(result);
+            // Send back the results
+            var data = {events: result.rows};
+            res.send(data);
+          }
+        }); // end query
+      } else {
+        res.sendStatus(401);
+      }
+    } // end if
+  }); // end pool
+}); // end of POST - create event admin
 
 module.exports = router;

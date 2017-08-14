@@ -11,7 +11,7 @@ body, html {
 }
 
 .instructions {
-  background-color: #A81F1F;
+  background-color: #4286f4;
   color: #DDDDDD;
   padding: 15px;
 }
@@ -53,7 +53,7 @@ body, html {
 }
 
 .navbar {
-  background-color: #1C406E;
+  background-color: #275193;
   width: 100%;
 }
 
@@ -72,7 +72,7 @@ li a {
   display: block;
   color: white;
   text-align: center;
-  padding: 15px 16px;
+  padding: 15px 15px;
   text-decoration: none;
   font-size: 16px;
 }

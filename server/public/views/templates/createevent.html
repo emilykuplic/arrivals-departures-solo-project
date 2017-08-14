@@ -1,26 +1,30 @@
 <!--User Page Create Event-->
 <div ng-include="'views/partials/usernav.html'"></div>
 <div class="container">
+  <div class="row">
     <form>
-      <div class="form-group">
-        <label for="formAttendingInput">Event Name</label>
-        <input class="form-control" id="formAttendingInput"  type="text" name="attending" placeholder="Number Attending" ng-model="ec.data.selectedEvent.number_attending">
-        <button class="btn btn-default" type="button" name="button" ng-click="ec.rsvpEvents(ec.data.selectedEvent)">Submit RSVP</button>
+      <div class="form-group col-md-12">
+        <label for="formEventInput">Event Name</label>
+        <input class="form-control" id="formNameInput"  type="text" name="name"
+        placeholder="Event Name" ng-model="event.event_name">
       </div>
-      <div class="form-group">
-        <label for="formAttendingInput">Event Description</label>
-        <input class="form-control" id="formAttendingInput"  type="text" name="attending" placeholder="Number Attending" ng-model="ec.data.selectedEvent.number_attending">
-        <button class="btn btn-default" type="button" name="button" ng-click="ec.rsvpEvents(ec.data.selectedEvent)">Submit RSVP</button>
+      <div class="form-group col-md-12">
+        <label for="formDescriptionInput">Event Description</label>
+        <input class="form-control" id="formDescriptionInput"  type="text"
+        name="description" placeholder="Event Description" ng-model="event.event_description">
       </div>
-      <div class="form-group">
-        <label for="formArrivalInput">Starting Date</label>
-        <input class="form-control" id="formArrivalInput" type="date" name="arrival" placeholder="Arrival Date"
-        ng-model="ec.data.selectedEvent.arrival_date">
+      <div class="form-group col-sm-6">
+        <label for="formStartingInput">Starting Date</label>
+        <input class="form-control" id="formStartingInput" type="date" name="starting" placeholder="Starting Date"
+        ng-model="event.starting_date">
       </div>
-      <div class="form-group">
-        <label for="formDepartureInput">Ending Date</label>
-        <input class="form-control" id="formDepartureInput" type="date" name="departure" placeholder="Departure Date" ng-model="ec.data.selectedEvent.departure_date">
+      <div class="form-group col-sm-6">
+        <label for="formEndingInput">Ending Date</label>
+        <input class="form-control" id="formEndingInput" type="date" name="ending" placeholder="Ending Date"
+        ng-model="event.ending_date">
       </div>
-      <button type="button" name="button">Create Event</button>
     </form>
+    <button class="btn btn-default" type="button" ng-click="ec.createEvent(event)">Create Event</button>
+
+  </div>
   </div>

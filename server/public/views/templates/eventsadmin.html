@@ -1,0 +1,19 @@
+<div ng-include="'views/partials/usernav.html'"></div>
+<!--Admin Event View-->
+<div class="container">
+<h2>All Events</h2>
+<table class="table table-hover"
+  <tr>
+    <th>Event</th>
+    <th>Description</th>
+    <th>Event Dates</th>
+    <th></th>
+  </tr>
+  <tr ng-repeat="event in ec.eventObject.events">
+    <td>{{event.event_name}}</td>
+    <td>{{event.event_description}}</td>
+    <td>{{event.starting_date | date}} - {{event.ending_date | date}}</td>
+    <td><button class="btn btn-default" ng-click="ec.editEvent(event)">Edit Event</button></td>
+  </tr>
+</table>
+</div>

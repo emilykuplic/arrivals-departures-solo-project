@@ -22,9 +22,9 @@ myApp.config(function($routeProvider, $locationProvider) {
         }
       }
     })
-    .when('/info', {
-      templateUrl: '/views/templates/info.html',
-      controller: 'InfoController',
+    .when('/admin', {
+      templateUrl: '/views/templates/admin.html',
+      controller: 'UserController as uc',
       resolve: {
         getuser : function(UserService){
           return UserService.getuser();
@@ -33,6 +33,33 @@ myApp.config(function($routeProvider, $locationProvider) {
     })
     .when('/events', {
       templateUrl: '/views/templates/events.html',
+      controller: 'EventsController as ec',
+      resolve: {
+        getuser : function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
+    .when('/events/admin', {
+      templateUrl: '/views/templates/eventsadmin.html',
+      controller: 'EventsController as ec',
+      resolve: {
+        getuser : function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
+    .when('/events/edit', {
+      templateUrl: '/views/templates/eventsdetails.html',
+      controller: 'EventsController as ec',
+      resolve: {
+        getuser : function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
+    .when('/events/create', {
+      templateUrl: '/views/templates/createevents.html',
       controller: 'EventsController as ec',
       resolve: {
         getuser : function(UserService){

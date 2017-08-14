@@ -78,4 +78,41 @@ router.put('/rsvp/', function(req, res){
   }); // end pool
 }); // end of GET
 
+router.put('/edit/', function(req, res){
+  var event = req.body;
+  console.log('Put route called to event of', event);
+  // errorConnecting is bool, db is what we query against,
+  // done is a function that we call when we're done
+  pool.connect(function(errorConnectingToDatabase, db, done){
+    if(errorConnectingToDatabase) {
+      console.log('Error connecting to the database.', req.body);
+      res.sendStatus(500);
+    } else {
+      if(req.isAuthenticated()) {
+        // We connected to the database!!!
+        // Now we're going to GET things from the db
+        var queryText = 'UPDATE "invitations"  SET "arrival_date" = $1, "departure_date" =$2, "number_attending" =$3 ' +
+        'WHERE "user_id" = $4 AND "event_id" = $5;';
+        // errorMakingQuery is a bool, result is an object
+        db.query(queryText,[event.selectedEvent.arrival_date, event.selectedEvent.departure_date, event.selectedEvent.number_attending,
+          event.selectedEvent.user_id, event.selectedEvent.event_id], function(errorMakingQuery, result){
+          done();
+          if(errorMakingQuery) {
+            console.log('Attempted to query with', queryText);
+            console.log('Error making query', errorMakingQuery);
+            res.sendStatus(500);
+          } else {
+            // console.log(result);
+            // Send back the results
+            var data = {events: result.rows};
+            res.send(data);
+          }
+        }); // end query
+      } else {
+        res.sendStatus(401);
+      }
+    } // end if
+  }); // end pool
+}); // end of GET
+
 module.exports = router;

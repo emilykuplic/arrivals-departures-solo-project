@@ -1,8 +1,11 @@
 <div class="navbar" ng-controller="NavController as nc">
   <div class="container">
     <ul>
-      <li><a href="#/events">My Events</a></li>
-      <li ng-if="nc.userObject.userName == 2"><a href="#/user">User Home</a></li>
+      <li ng-if="nc.userObject.role == 2"><a href="#/user">User Home</a></li>
+      <li ng-if="nc.userObject.role == 1"><a href="#/admin">Admin Home</a></li>
+      <li ng-if="nc.userObject.role == 2"><a href="#/events">Events</a></li>
+      <li ng-if="nc.userObject.role == 1"><a href="#/events/admin">Events</a></li>
+      <li ng-if="nc.userObject.role == 1"><a href="#/events/create">Create a Event</a></li>
     </ul>
   </div>
 </div>

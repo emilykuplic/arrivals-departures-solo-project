@@ -1,22 +1,7 @@
 <!--Admin Home Page-->
-<div ng-include="'views/partials/adminnav.html'"></div>
+<div ng-include="'views/partials/usernav.html'"></div>
 <div class="container">
 
   <div class ="row">
     <h1 id="welcome" class="lead">Welcome, {{uc.userObject.userName}}!</h1>
     <button class="btn btn-default" ng-click="uc.userService.logout()">Log Out</button>
-<br>
-<br>
-<h1>Events</h1>
-<button class="btn btn-default" name="button">Create Event</button>
-<button class="btn btn-default" name="button">Create Floorplan</button>
-<h2>Upcoming Events</h2>
-    <div class="list-group" id="pending">
-      <a href="#" class="list-group-item">Use angular to populate data in list</a>
-    </div>
-<h2>Past Events</h2>
-    <div class="list-group" id="past">
-      <a href="#" class="list-group-item">Use angular to populate data in list</a>
-    </div>
-  </div>
-</div>

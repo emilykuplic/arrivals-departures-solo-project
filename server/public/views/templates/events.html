@@ -1,4 +1,6 @@
 <div ng-include="'views/partials/usernav.html'"></div>
+
+<!--User Event View-->
 <div class="container">
   <h2>Pending Events</h2>
   <table class="table table-hover">
@@ -29,7 +31,7 @@
         <td>{{event.arrival_date | date}} - {{event.departure_date | date}}</td>
       </tr>
     </table>
-    <h2>Past Events - Not Filtering Yet</h2>
+    <!-- <h2>Past Events - Not Filtering Yet</h2>
     <table>
       <table class="table table-hover">
         <tr>
@@ -42,12 +44,6 @@
           <td>{{event.event_description}}</td>
           <td>{{event.arrival_date | date}} - {{event.departure_date | date}}</td>
         </tr>
-      </table>
+      </table> -->
     </div>
   </div>
-
-  {{ec.eventObject.events[0].event_name}}
-testing 123<br>
-Number Attending:{{ec.eventObject.events[1].number_attending}}<br>
-Arrival Date: {{ec.eventObject.events[1].arrival_date}}<br>
-Departure Date:{{ec.eventObject.events[1].departure_date}}

@@ -1,8 +1,11 @@
 <!--User Page Create Event-->
 <div ng-include="'views/partials/usernav.html'"></div>
 <div class="container">
+<h2>Create a Event</h2>
   <div class="row">
+
     <form>
+
       <div class="form-group col-md-12">
         <label for="formEventInput">Event Name</label>
         <input class="form-control" id="formNameInput"  type="text" name="name"
@@ -24,7 +27,33 @@
         ng-model="event.ending_date">
       </div>
     </form>
-    <button class="btn btn-default" type="button" ng-click="ec.createEvent(event)">Create Event</button>
 
   </div>
+  <button class="btn btn-default" type="button" ng-click="ec.createEvent(event)">Create Event</button>
+<br>
+<br>
+
+<h2>Invite People</h2>
+<div class="row">
+<div class="input-group">
+<input class="form-control" type="text" name="search users" ng-model="search_users" placeholder="Search...">
+</div>
+<button class="btn btn-success" ng-click="ec.editThisEvent(event)">Add New User</button>
+</div>
+
+<div class="row">
+<table class="table table-hover"
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+    <th></th>
+  </tr>
+  <tr ng-repeat="user in ec.userObject.users">
+    <td>{{user.first_name}}</td>
+    <td>{{user.last_name}}</td>
+    <td>{{user.email}}</td>
+    <td><button class="btn btn-success" ng-click="ec.inviteThisPerson(user)">+</button><td>
+  </tr>
+</table>
   </div>

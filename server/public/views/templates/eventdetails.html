@@ -2,34 +2,28 @@
 <!--User Page Event RSVP-->
 <div ng-include="'views/partials/usernav.html'"></div>
 <div class="container">
-  <h1>{{ec.data.selectedEvent.event_name}}<h1>
-    <h2>{{ec.data.selectedEvent.starting_date | date}} - {{ec.data.selectedEvent.ending_date | date}}</h2>
-    <h3>{{ec.data.selectedEvent.event_description}}</h3>
     <form>
       <div class="form-group">
         <label for="formEventInput">Event Name</label>
-        <input class="form-control" id="formAttendingInput"  type="text" name="attending" placeholder="Number Attending" ng-model="ec.data.selectedEvent.number_attending">
-        <button class="btn btn-default" type="button" name="button" ng-click="ec.rsvpEvents(ec.data.selectedEvent)">Submit RSVP</button>
+        <input class="form-control" id="formAttendingInput"  type="text" name="attending"
+        placeholder="{{ec.data.selectedEvent.event_name}}">
       </div>
       <div class="form-group">
         <label for="formEventDescriptionInput">Event Description</label>
-        <input class="form-control" id="formAttendingInput"  type="text" name="attending" placeholder="Number Attending" ng-model="ec.data.selectedEvent.number_attending">
-        <button class="btn btn-default" type="button" name="button" ng-click="ec.rsvpEvents(ec.data.selectedEvent)">Submit RSVP</button>
+        <input class="form-control" id="formAttendingInput"  type="text" name="attending"
+        placeholder="{{ec.data.selectedEvent.event_description}}">
       </div>
       <div class="form-group">
         <label for="formStartingDateInput">Starting Date</label>
-        <input class="form-control" id="formArrivalInput" type="date" name="arrival" placeholder="Arrival Date"
-        ng-model="ec.data.selectedEvent.arrival_date">
+        <input class="form-control" id="formArrivalInput" type="date" name="starting"
+        placeholder="mm/dd/yyyy">
       </div>
       <div class="form-group">
         <label for="formEndingDateInput">Ending Date</label>
-        <input class="form-control" id="formDepartureInput" type="date" name="departure" placeholder="Departure Date" ng-model="ec.data.selectedEvent.departure_date">
+        <input class="form-control" id="formDepartureInput" type="date" name="ending"
+        placeholder="mm/dd/yyyy">
       </div>
-      <div class="form-group">
-        <label for="formAttendingInput">Number Attending</label>
-        <input class="form-control" id="formAttendingInput"  type="text" name="attending" placeholder="Number Attending" ng-model="ec.data.selectedEvent.number_attending">
-        <button class="btn btn-default" type="button" name="button" ng-click="ec.rsvpEvents(ec.data.selectedEvent)">Submit RSVP</button>
-      </div>
+        <button class="btn btn-default" type="button" name="button" ng-click="ec.editEvent(ec.data.selectedEvent)">Update Event Details</button>
 
     </form>
   </div>

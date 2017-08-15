@@ -4,7 +4,12 @@ One Paragraph of project description goes here. Link to the live version of the 
 
 ## Built With
 
-List technologies and frameworks here
+Express
+Node.js
+Postgresql
+AngularJS
+Bootstrap
+JavaScript
 
 ## Getting Started
 
@@ -55,9 +60,9 @@ Features that you would like to add at some point in the future.
 
 Add additional notes about how to deploy this on a live system
 
-## Authors
+## Author
 
-* Name of author(s)
+* Emily Kuplic
 
 
 ## Acknowledgments

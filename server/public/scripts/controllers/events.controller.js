@@ -8,6 +8,7 @@ myApp.controller('EventsController', function($http, $location, UserService, Eve
 
   getAllEvents();
   getAdminEvents();
+  getUsers();
 
   function getAllEvents(){
     console.log( 'in getEvents function' );
@@ -18,6 +19,14 @@ myApp.controller('EventsController', function($http, $location, UserService, Eve
     }); // end success
   } // end getEvents
 
+  function getUsers(){
+    console.log( 'in getUsers function' );
+    // ajax call to server to get tasks
+    $http.get('/events/create').then(function(response){
+      vm.userObject = response.data;
+      console.log('events.controller vmuserObject', vm.userObject);
+    }); // end success
+  } // end getEvents
 
   function getAdminEvents(){
     console.log( 'in getEvents function' );
@@ -35,6 +44,13 @@ myApp.controller('EventsController', function($http, $location, UserService, Eve
     $location.path('/events/rsvp');
   }; // end getPendingEvents
 
+  //access from the view
+  vm.editThisEvent= function(selectedEvent){
+    console.log('in getPendingEvent function', selectedEvent);
+    vm.data.selectedEvent = selectedEvent;
+    $location.path('/events/edit');
+  }; // end getPendingEvents
+
 
   vm.rsvpEvents = function(selectedEvent){
       console.log( 'in rsvpEvents functon', selectedEvent);
@@ -43,7 +59,7 @@ myApp.controller('EventsController', function($http, $location, UserService, Eve
       }); // end success
     }; // end rsvpEvents
 
-    vm.editEvents = function(selectedEvent){
+    vm.editEvent = function(selectedEvent){
         console.log( 'in editEvents functon', selectedEvent);
         // ajax call to server to get tasks
         $http.put('/events/edit', vm.data).then(function(selectedEvent){

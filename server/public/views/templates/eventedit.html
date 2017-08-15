@@ -6,24 +6,24 @@
       <div class="form-group">
         <label for="formEventInput">Event Name</label>
         <input class="form-control" id="formAttendingInput"  type="text" name="attending"
-        placeholder="{{ec.data.selectedEvent.event_name}}">
+        ng-model="ec.data.selectedEvent.event_name">
       </div>
       <div class="form-group">
         <label for="formEventDescriptionInput">Event Description</label>
         <input class="form-control" id="formAttendingInput"  type="text" name="attending"
-        placeholder="{{ec.data.selectedEvent.event_description}}">
+        ng-model="ec.data.selectedEvent.event_description">
       </div>
       <div class="form-group">
         <label for="formStartingDateInput">Starting Date</label>
         <input class="form-control" id="formArrivalInput" type="date" name="starting"
-        placeholder="mm/dd/yyyy">
+        ng-model="ec.data.selectedEvent.starting_date">
       </div>
       <div class="form-group">
         <label for="formEndingDateInput">Ending Date</label>
         <input class="form-control" id="formDepartureInput" type="date" name="ending"
-        placeholder="mm/dd/yyyy">
+        ng-model="ec.data.selectedEvent.ending_date">
       </div>
-        <button class="btn btn-default" type="button" name="button" ng-click="ec.editEvent(ec.data.selectedEvent)">Update Event Details</button>
+        <button class="btn btn-default" type="button" name="button" ng-click="ec.editThisEvent(ec.data.selectedEvent)">Update Event Details</button>
 
     </form>
   </div>

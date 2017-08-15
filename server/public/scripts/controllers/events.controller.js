@@ -48,6 +48,8 @@ myApp.controller('EventsController', function($http, $location, UserService, Eve
   vm.editThisEvent= function(selectedEvent){
     console.log('in getPendingEvent function', selectedEvent);
     vm.data.selectedEvent = selectedEvent;
+    vm.data.selectedEvent.starting_date = new Date(vm.data.selectedEvent.starting_date);
+    vm.data.selectedEvent.ending_date = new Date(vm.data.selectedEvent.ending_date);
     $location.path('/events/edit');
   }; // end getPendingEvents
 
@@ -59,12 +61,15 @@ myApp.controller('EventsController', function($http, $location, UserService, Eve
       }); // end success
     }; // end rsvpEvents
 
-    vm.editEvent = function(selectedEvent){
-        console.log( 'in editEvents functon', selectedEvent);
-        // ajax call to server to get tasks
-        $http.put('/events/edit', vm.data).then(function(selectedEvent){
-        }); // end success
-      }; // end editEvents
+
+      vm.deleteThisEvent = function(selectedEvent){
+          console.log( 'in deleteEvents functon', selectedEvent);
+          vm.data.selectedEvent = selectedEvent;
+          // ajax call to server to get tasks
+          $http.delete('/events/edit/' + selectedEvent.id).then(function(selectedEvent){
+              getAdminEvents();
+          }); // end success
+        }; // end editEvents
 
     vm.createEvent = function(createEvent){
         console.log( 'in createEvent functon');

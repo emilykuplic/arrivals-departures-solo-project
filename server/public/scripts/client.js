@@ -50,7 +50,7 @@ myApp.config(function($routeProvider, $locationProvider) {
       }
     })
     .when('/events/edit', {
-      templateUrl: '/views/templates/eventdetails.html',
+      templateUrl: '/views/templates/eventedit.html',
       controller: 'EventsController as ec',
       resolve: {
         getuser : function(UserService){

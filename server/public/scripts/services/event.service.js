@@ -1,5 +1,5 @@
 myApp.factory('EventService', function($http, $location){
-  console.log('EventService Loaded');
+  // console.log('EventService Loaded');
 
   var data = {selectedEvent: {event_name: 'test'}};
 
@@ -7,5 +7,5 @@ myApp.factory('EventService', function($http, $location){
     data : data,
 
 
-}
+};
 });

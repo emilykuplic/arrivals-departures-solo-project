@@ -1,5 +1,5 @@
 myApp.controller('EventsController', function($http, $location, UserService, EventService) {
-  console.log('EventsController created');
+  // console.log('EventsController created');
   var vm = this;
   vm.userService = UserService;
 
@@ -45,22 +45,28 @@ myApp.controller('EventsController', function($http, $location, UserService, Eve
   }; // end getPendingEvents
 
   //access from the view
-  vm.editThisEvent= function(selectedEvent){
-    console.log('in getPendingEvent function', selectedEvent);
-    vm.data.selectedEvent = selectedEvent;
-    vm.data.selectedEvent.starting_date = new Date(vm.data.selectedEvent.starting_date);
-    vm.data.selectedEvent.ending_date = new Date(vm.data.selectedEvent.ending_date);
-    $location.path('/events/edit');
-  }; // end getPendingEvents
-
-
-  vm.rsvpEvents = function(selectedEvent){
+  vm.rsvpEvent = function(selectedEvent){
       console.log( 'in rsvpEvents functon', selectedEvent);
       // ajax call to server to get tasks
       $http.put('/events/rsvp', vm.data).then(function(selectedEvent){
       }); // end success
     }; // end rsvpEvents
 
+    vm.editThisEvent= function(selectedEvent){
+      console.log('in editThisEvent function', selectedEvent);
+      vm.data.selectedEvent = selectedEvent;
+      vm.data.selectedEvent.starting_date = new Date(vm.data.selectedEvent.starting_date);
+      vm.data.selectedEvent.ending_date = new Date(vm.data.selectedEvent.ending_date);
+      $location.path('/events/edit');
+    }; // end editThisEvents
+
+    //access from the view
+    vm.editEvent = function(selectedEvent){
+        console.log( 'in editEvents functon', selectedEvent);
+        // ajax call to server to get tasks
+        $http.put('/events/edit', vm.data).then(function(selectedEvent){
+        }); // end success
+      }; // end editEvent
 
       vm.deleteThisEvent = function(selectedEvent){
           console.log( 'in deleteEvents functon', selectedEvent);

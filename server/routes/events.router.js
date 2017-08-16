@@ -89,7 +89,7 @@ router.get('/create', function(req, res){
       if(req.isAuthenticated()) {
         // We connected to the database!!!
         // Now we're going to GET things from the db
-        var queryText = 'SELECT "first_name", "last_name", "email" FROM "users"';
+        var queryText = 'SELECT "id","first_name", "last_name", "email" FROM "users"';
         // errorMakingQuery is a bool, result is an object
         db.query(queryText, function(errorMakingQuery, result){
           done();
@@ -125,7 +125,7 @@ router.put('/rsvp/', function(req, res){
       if(req.isAuthenticated()) {
         // We connected to the database!!!
         // Now we're going to GET things from the db
-        var queryText = 'UPDATE "invitations"  SET "arrival_date" = $1, "departure_date" =$2, "number_attending" =$3 ' +
+        var queryText = 'UPDATE "invitations" SET "arrival_date" = $1, "departure_date" =$2, "number_attending" =$3 ' +
         'WHERE "user_id" = $4 AND "event_id" = $5;';
         // errorMakingQuery is a bool, result is an object
         db.query(queryText,[event.selectedEvent.arrival_date, event.selectedEvent.departure_date, event.selectedEvent.number_attending,
@@ -150,22 +150,23 @@ router.put('/rsvp/', function(req, res){
   }); // end of PUT rsvp - user
 
   router.put('/edit/', function(req, res){
-    var ev = req.body;
-    console.log('Put route called to event of', ev);
+    var details = req.body;
+    console.log('Put route called to event of', details);
     // errorConnecting is bool, db is what we query against,
     // done is a function that we call when we're done
     pool.connect(function(errorConnectingToDatabase, db, done){
       if(errorConnectingToDatabase) {
-        console.log('Error connecting to the database.', req.body);
+        console.log('Error connecting to the database.', selectedEvent);
         res.sendStatus(500);
       } else {
         if(req.isAuthenticated()) {
           // We connected to the database!!!
           // Now we're going to GET things from the db
-          var queryText = 'INSERT INTO "events"  SET "event_name"=$1, "event_description"=$2, "starting_date"=$3, "ending_date"=$4,';
+          var queryText = 'UPDATE "events" SET "event_name"=$1, "event_description"=$2, ' +
+          '"starting_date"=$3, "ending_date"=$4 WHERE "id"= $5' ;
           // errorMakingQuery is a bool, result is an object
-          db.query(queryText,[ev.selectedEvent.event_name, ev.selectedEvent.event_description, ev.selectedEvent.starting_date,
-            ev.selectedEvent.ending_date], function(errorMakingQuery, result){
+          db.query(queryText,[details.selectedEvent.event_name, details.selectedEvent.event_description, details.selectedEvent.starting_date,
+            details.selectedEvent.ending_date, details.selectedEvent.id], function(errorMakingQuery, result){
               done();
               if(errorMakingQuery) {
                 console.log('Attempted to query with', queryText);
@@ -225,7 +226,7 @@ router.put('/rsvp/', function(req, res){
 // delete route to delect selectedEvent -- Admin
       router.delete('/edit/:id', function(req, res){
       var selectedEvent = req.params.id;
-        console.log('Delete route called to this', selectedEvent);
+        console.log('Delete route called to this id', selectedEvent);
         // errorConnecting is bool, db is what we query against,
         // done is a function that we call when we're done
         pool.connect(function(errorConnectingToDatabase, db, done){
@@ -251,6 +252,8 @@ router.put('/rsvp/', function(req, res){
             }); // end query
           } // end if
         }); // end of DELETE - admin event delete
-      });
+
+
+      });//end of router function
 
       module.exports = router;

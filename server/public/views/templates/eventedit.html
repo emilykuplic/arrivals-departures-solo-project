@@ -2,6 +2,7 @@
 <!--User Page Event RSVP-->
 <div ng-include="'views/partials/usernav.html'"></div>
 <div class="container">
+<div class="row">
     <form>
       <div class="form-group">
         <label for="formEventInput">Event Name</label>
@@ -23,7 +24,8 @@
         <input class="form-control" id="formDepartureInput" type="date" name="ending"
         ng-model="ec.data.selectedEvent.ending_date">
       </div>
-        <button class="btn btn-default" type="button" name="button" ng-click="ec.editThisEvent(ec.data.selectedEvent)">Update Event Details</button>
+        <button class="btn btn-default" type="button" name="button" ng-click="ec.editEvent(ec.data.selectedEvent)">Update Event Details</button>
 
     </form>
+</div>
   </div>

@@ -18,13 +18,11 @@ CREATE TABLE events (
 
 CREATE TABLE invitations (
     id serial PRIMARY KEY,
-    event_id integer,
-    user_id integer,
+    event_id integer REFERENCES events ON DELETE CASCADE,
+    user_id integer REFERENCES users,
     arrival_date date,
     departure_date date,
-    number_attending integer,
-    FOREIGN KEY (event_id) REFERENCES events,
-    FOREIGN KEY (user_id) REFERENCES users
+    number_attending integer
 );
 
 Test Data

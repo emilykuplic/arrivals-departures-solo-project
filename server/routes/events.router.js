@@ -186,6 +186,7 @@ router.put('/rsvp/', function(req, res){
       }); // end pool
     }); // end of PUT - edit event admin
 
+// Create a new event - Admin
     router.post('/create/', function(req, res){
       var ev = req.body;
       console.log('Post route called to event of', ev);
@@ -222,6 +223,43 @@ router.put('/rsvp/', function(req, res){
           } // end if
         }); // end pool
       }); // end of POST - create event admin
+
+      // Create a invite user to event - Admin
+          router.post('/invite/', function(req, res){
+            var info = req.body;
+            console.log('Post route called to event of', info);
+            // errorConnecting is bool, db is what we query against,
+            // done is a function that we call when we're done
+            pool.connect(function(errorConnectingToDatabase, db, done){
+              if(errorConnectingToDatabase) {
+                console.log('Error connecting to the database.', req.body);
+                res.sendStatus(500);
+              } else {
+                if(req.isAuthenticated()) {
+                  // We connected to the database!!!
+                  // Now we're going to GET things from the db
+                  var queryText = 'INSERT INTO "invitations" ("event_id", "user_id")' +
+                  ' VALUES ($1, $2);';
+                  // errorMakingQuery is a bool, result is an object
+                  db.query(queryText,[info.event_id, info.id], function(errorMakingQuery, result){
+                      done();
+                      if(errorMakingQuery) {
+                        console.log('Attempted to query with', queryText);
+                        console.log('Error making query', errorMakingQuery);
+                        res.sendStatus(500);
+                      } else {
+                        // console.log(result);
+                        // Send back the results
+                        var data = {events: result.rows};
+                        res.send(data);
+                      }
+                    }); // end query
+                  } else {
+                    res.sendStatus(401);
+                  }
+                } // end if
+              }); // end pool
+            }); // end of POST - invite user to event - admin
 
 // delete route to delect selectedEvent -- Admin
       router.delete('/edit/:id', function(req, res){

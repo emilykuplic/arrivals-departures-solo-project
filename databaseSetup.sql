@@ -33,7 +33,7 @@ INSERT INTO "invitations" (event_id, user_id, arrival_date, departure_date, numb
 (1, 1, '06-30-2017', '07-4-2017', 2);
 
 Query
-GET for events
+GET for events by user id
 SELECT "events"."event_name", "events"."event_description", "events"."starting_date","events"."ending_date"
 FROM "events" JOIN "invitations" ON "events"."id" = "invitations"."event_id"
 JOIN "users" ON "users"."id" = "invitations"."user_id" WHERE "users"."id" = 1 ;

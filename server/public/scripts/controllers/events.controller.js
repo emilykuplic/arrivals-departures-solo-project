@@ -75,7 +75,7 @@ myApp.controller('EventsController', function($http, $location, UserService, Eve
           $http.delete('/events/edit/' + selectedEvent.id).then(function(selectedEvent){
               getAdminEvents();
           }); // end success
-        }; // end editEvents
+        }; // end deleteThisEvent
 
     vm.createEvent = function(createEvent){
         console.log( 'in createEvent functon');
@@ -83,7 +83,23 @@ myApp.controller('EventsController', function($http, $location, UserService, Eve
         $http.post('/events/create', createEvent ).then(function(response){
           console.log('events.controller vmeventObject');
         }); // end success
-      }; // end editEvents
+      }; // end createEvent
+
+      vm.inviteThisPerson = function(info){
+          console.log( 'in createEvent functon', info);
+          // giving the event_id from dropdown
+          console.log(vm.selectedValue);
+          info.event_id = vm.selectedValue;
+          // ajax call to server to get tasks
+          $http.post('/events/invite', info).then(function(response){
+            console.log('events.controller vmeventObject');
+          }); // end success
+        }; // end inviteThisPerson Events
+
+      vm.dropdownChange = function(selectedValue){
+        console.log('selected value', selectedValue);
+        vm.selectedValue = selectedValue.id;
+      };
 
 
   }); //end of controller

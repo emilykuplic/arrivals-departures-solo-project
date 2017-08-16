@@ -1,0 +1,39 @@
+<div ng-include="'views/partials/usernav.html'"></div>
+<div class="container">
+  <div class="row">
+<div class="col-sm-6">
+  <h2>Select an event</h2>
+<select ng-options="event.event_name + ' | ' + event.starting_date + ' - ' + event.ending_date for event in ec.allEventsObject.events"
+ ng-model="event" ng-change="ec.dropdownChange(event)">
+</select>
+</div>
+  <div class="col-sm-6">
+    <h2>Whose Been Invited?</h2>
+GET ROUTE  to invitations table
+  </div>
+</div>
+<h2>Invite People</h2>
+
+<!-- <div class="input-group">
+<input class="form-control" type="text" name="search users" ng-model="search_users" placeholder="Search...">
+</div> -->
+<table class="table table-hover">
+<thead>
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+    <th>Add User to Event</th>
+  </tr>
+</thead>
+<tbody>
+  <tr ng-repeat="user in ec.userObject.users">
+    <td>{{user.first_name}}</td>
+    <td>{{user.last_name}}</td>
+    <td>{{user.email}}</td>
+    <td><button class="btn btn-success" ng-click="ec.inviteThisPerson(user)">+</button><td>
+  </tr>
+</tbody>
+</table>
+</div>
+</div>

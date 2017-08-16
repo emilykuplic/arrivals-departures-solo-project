@@ -25,28 +25,4 @@
       </div>
     </form>
   <button class="btn btn-default" type="button" ng-click="ec.createEvent(event)">Create Event</button>
-<br>
-<br>
-
-<h2>Invite People</h2>
-
-<div class="input-group">
-<input class="form-control" type="text" name="search users" ng-model="search_users" placeholder="Search...">
-</div>
-<button class="btn btn-success" ng-click="ec.editThisEvent(event)">Add New User</button>
-
-<table class="table table-hover"
-  <tr>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Email</th>
-    <th>Add User to Event</th>
-  </tr>
-  <tr ng-repeat="user in ec.userObject.users">
-    <td>{{user.first_name}}</td>
-    <td>{{user.last_name}}</td>
-    <td>{{user.email}}</td>
-    <td><button class="btn btn-success" ng-click="ec.inviteThisPerson(user)">+</button><td>
-  </tr>
-</table>
   </div>

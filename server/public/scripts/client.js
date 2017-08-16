@@ -76,6 +76,15 @@ myApp.config(function($routeProvider, $locationProvider) {
         }
       }
     })
+    .when('/events/invite', {
+      templateUrl: '/views/templates/eventinvite.html',
+      controller: 'EventsController as ec',
+      resolve: {
+        getuser : function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
     .otherwise({
       redirectTo: 'home'
     });

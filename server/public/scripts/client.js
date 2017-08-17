@@ -1,9 +1,9 @@
-var myApp = angular.module('myApp', ['ngRoute']);
+var myApp = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 
 /// Routes ///
 myApp.config(function($routeProvider, $locationProvider) {
   $locationProvider.hashPrefix('');
-  console.log('myApp -- config')
+  console.log('myApp -- config');
   $routeProvider
     .when('/home', {
       templateUrl: '/views/templates/home.html',
@@ -79,6 +79,15 @@ myApp.config(function($routeProvider, $locationProvider) {
     .when('/events/invite', {
       templateUrl: '/views/templates/eventinvite.html',
       controller: 'EventsController as ec',
+      resolve: {
+        getuser : function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
+    .when('/user/create', {
+      templateUrl: '/views/templates/adduser.html',
+      controller: 'UserController as uc',
       resolve: {
         getuser : function(UserService){
           return UserService.getuser();

@@ -33,6 +33,8 @@ myApp.controller('EventsController', function($http, $location, UserService, Eve
     // ajax call to server to get tasks
     $http.get('/events/admin').then(function(response){
       vm.allEventsObject = response.data;
+      // vm.allEventsObject.starting_date = new Date(vm.allEventsObject.starting_date);
+      // vm.allEventsObject.ending_date = new Date(vm.allEventsObject.ending_date);
       console.log('events.controller vm.allEventsObject', vm.allEventsObject);
     }); // end success
   } // end getAdminEvents
@@ -101,12 +103,16 @@ myApp.controller('EventsController', function($http, $location, UserService, Eve
         vm.selectedValue = selectedValue.id;
       };
 
+      vm.getPeopleAttendingEvent = function(){
+        console.log( 'in getPeopleAttendingEvent function', vm.selectedValue);
+        // giving the event_id from dropdown
+        console.log(vm.selectedValue);
+        // ajax call to server to get tasks
+        $http.get('/events/invite/' + vm.selectedValue).then(function(response){
+          vm.allInvitedObject = response.data;
+          console.log('events.controller vm.allInvitedObject', vm.allInvitedObject);
+        }); // end success
+      }; // end getPeopleAttendingEvent
+
 
   }); //end of controller
-
-
-
-
-function appendToDom(events){
-  console.log('appendToDom');
-}

@@ -3,19 +3,20 @@ var router = express.Router();
 var path = require('path');
 var pg = require('pg');
 var pool = require('../modules/pool.js');
+var ADMIN = 1;
+var USER = 2;
 
 //Get for all events for that user to show up on the DOM
 router.get('/', function(req, res){
-  // errorConnecting is bool, db is what we query against,
-  // done is a function that we call when we're done
-  pool.connect(function(errorConnectingToDatabase, db, done){
-    if(errorConnectingToDatabase) {
-      console.log('Error connecting to the database.');
-      res.sendStatus(500);
-    } else {
-      //method that passport puts on the req object returns T or F
-      if(req.isAuthenticated()) {
-        // We connected to the database!!!
+  if(req.isAuthenticated()) {
+    // errorConnecting is bool, db is what we query against,
+    // done is a function that we call when we're done
+    pool.connect(function(errorConnectingToDatabase, db, done){
+      if(errorConnectingToDatabase) {
+        console.log('Error connecting to the database.');
+        res.sendStatus(500);
+      } else {
+        //method that passport puts on the req object returns T or F
         // Now we're going to GET things from the db
         var queryText = 'SELECT * FROM "events" JOIN "invitations" ' +
         'ON "events"."id" = "invitations"."event_id" JOIN "users"' +
@@ -34,24 +35,25 @@ router.get('/', function(req, res){
             res.send(data);
           }
         }); // end query
-      } else {
-        res.sendStatus(401);
-      }
-    } // end if
-  }); // end pool
+
+      } // end else
+    }); // end pool
+  } else {
+    res.sendStatus(401);
+  }
 }); // end of GET
 
 //Get for all events for admin
 router.get('/admin', function(req, res){
-  // errorConnecting is bool, db is what we query against,
-  // done is a function that we call when we're done
-  pool.connect(function(errorConnectingToDatabase, db, done){
-    if(errorConnectingToDatabase) {
-      console.log('Error connecting to the database.');
-      res.sendStatus(500);
-    } else {
-      //method that passport puts on the req object returns T or F
-      if(req.isAuthenticated()) {
+  if(req.isAuthenticated() && req.user.role === ADMIN) {
+    // errorConnecting is bool, db is what we query against,
+    // done is a function that we call when we're done
+    pool.connect(function(errorConnectingToDatabase, db, done){
+      if(errorConnectingToDatabase) {
+        console.log('Error connecting to the database.');
+        res.sendStatus(500);
+      } else {
+        //method that passport puts on the req object returns T or F
         // We connected to the database!!!
         // Now we're going to GET things from the db
         var queryText = 'SELECT * FROM "events"';
@@ -69,24 +71,25 @@ router.get('/admin', function(req, res){
             res.send(data);
           }
         }); // end query
-      } else {
-        res.sendStatus(401);
-      }
-    } // end if
-  }); // end pool
+      } // end else
+    }); // end pool
+  } //end if
+  else {
+    res.sendStatus(401);
+  }
 }); // end of GET - admin all events
 
-//Get for user inforation
+//Get for user information for inviting to events
 router.get('/create', function(req, res){
-  // errorConnecting is bool, db is what we query against,
-  // done is a function that we call when we're done
-  pool.connect(function(errorConnectingToDatabase, db, done){
-    if(errorConnectingToDatabase) {
-      console.log('Error connecting to the database.');
-      res.sendStatus(500);
-    } else {
-      //method that passport puts on the req object returns T or F
-      if(req.isAuthenticated()) {
+  if(req.isAuthenticated() && req.user.role === ADMIN){
+    // errorConnecting is bool, db is what we query against,
+    // done is a function that we call when we're done
+    pool.connect(function(errorConnectingToDatabase, db, done){
+      if(errorConnectingToDatabase) {
+        console.log('Error connecting to the database.');
+        res.sendStatus(500);
+      } else {
+        //method that passport puts on the req object returns T or F
         // We connected to the database!!!
         // Now we're going to GET things from the db
         var queryText = 'SELECT "id","first_name", "last_name", "email" FROM "users"';
@@ -104,13 +107,51 @@ router.get('/create', function(req, res){
             res.send(data);
           }
         }); // end query
+      } // end else
+    }); // end pool
+  } //end if
+  else {
+    res.sendStatus(401);
+  }
+}); // end of GET - users information for inviting
+
+//Get for all users invited to event to display to  DOM
+router.get('/invite/:id', function(req, res){
+  var selectedEvent = req.params.id;
+  // errorConnecting is bool, db is what we query against,
+  // done is a function that we call when we're done
+  pool.connect(function(errorConnectingToDatabase, db, done){
+    if(errorConnectingToDatabase) {
+      console.log('Error connecting to the database.');
+      res.sendStatus(500);
+    } else {
+      //method that passport puts on the req object returns T or F
+      if(req.isAuthenticated()) {
+        // We connected to the database!!!
+        // Now we're going to GET things from the db
+        var queryText = 'SELECT * FROM "users" JOIN "invitations" ' +
+        'ON "users"."id" = "invitations"."user_id" JOIN "events"' +
+        'ON "invitations"."event_id" = "events"."id" WHERE "event_id" = $1;';
+        // errorMakingQuery is a bool, result is an object
+        db.query(queryText, [selectedEvent], function(errorMakingQuery, result){
+          done();
+          if(errorMakingQuery) {
+            console.log('Attempted to query with', queryText);
+            console.log('Error making query');
+            res.sendStatus(500);
+          } else {
+            // console.log(result);
+            // Send back the results
+            var data = {invitedPeople: result.rows};
+            res.send(data);
+          }
+        }); // end query
       } else {
         res.sendStatus(401);
       }
     } // end if
   }); // end pool
-}); // end of GET - users information for inviting
-
+}); // end of GET
 
 router.put('/rsvp/', function(req, res){
   var event = req.body;
@@ -186,7 +227,7 @@ router.put('/rsvp/', function(req, res){
       }); // end pool
     }); // end of PUT - edit event admin
 
-// Create a new event - Admin
+    // Create a new event - Admin
     router.post('/create/', function(req, res){
       var ev = req.body;
       console.log('Post route called to event of', ev);
@@ -225,45 +266,45 @@ router.put('/rsvp/', function(req, res){
       }); // end of POST - create event admin
 
       // Create a invite user to event - Admin
-          router.post('/invite/', function(req, res){
-            var info = req.body;
-            console.log('Post route called to event of', info);
-            // errorConnecting is bool, db is what we query against,
-            // done is a function that we call when we're done
-            pool.connect(function(errorConnectingToDatabase, db, done){
-              if(errorConnectingToDatabase) {
-                console.log('Error connecting to the database.', req.body);
-                res.sendStatus(500);
-              } else {
-                if(req.isAuthenticated()) {
-                  // We connected to the database!!!
-                  // Now we're going to GET things from the db
-                  var queryText = 'INSERT INTO "invitations" ("event_id", "user_id")' +
-                  ' VALUES ($1, $2);';
-                  // errorMakingQuery is a bool, result is an object
-                  db.query(queryText,[info.event_id, info.id], function(errorMakingQuery, result){
-                      done();
-                      if(errorMakingQuery) {
-                        console.log('Attempted to query with', queryText);
-                        console.log('Error making query', errorMakingQuery);
-                        res.sendStatus(500);
-                      } else {
-                        // console.log(result);
-                        // Send back the results
-                        var data = {events: result.rows};
-                        res.send(data);
-                      }
-                    }); // end query
-                  } else {
-                    res.sendStatus(401);
-                  }
-                } // end if
-              }); // end pool
-            }); // end of POST - invite user to event - admin
+      router.post('/invite/', function(req, res){
+        var info = req.body;
+        console.log('Post route called to event of', info);
+        // errorConnecting is bool, db is what we query against,
+        // done is a function that we call when we're done
+        pool.connect(function(errorConnectingToDatabase, db, done){
+          if(errorConnectingToDatabase) {
+            console.log('Error connecting to the database.', req.body);
+            res.sendStatus(500);
+          } else {
+            if(req.isAuthenticated()) {
+              // We connected to the database!!!
+              // Now we're going to GET things from the db
+              var queryText = 'INSERT INTO "invitations" ("event_id", "user_id")' +
+              ' VALUES ($1, $2);';
+              // errorMakingQuery is a bool, result is an object
+              db.query(queryText,[info.event_id, info.id], function(errorMakingQuery, result){
+                done();
+                if(errorMakingQuery) {
+                  console.log('Attempted to query with', queryText);
+                  console.log('Error making query', errorMakingQuery);
+                  res.sendStatus(500);
+                } else {
+                  // console.log(result);
+                  // Send back the results
+                  var data = {events: result.rows};
+                  res.send(data);
+                }
+              }); // end query
+            } else {
+              res.sendStatus(401);
+            }
+          } // end if
+        }); // end pool
+      }); // end of POST - invite user to event - admin
 
-// delete route to delect selectedEvent -- Admin
+      // delete route to delect selectedEvent -- Admin
       router.delete('/edit/:id', function(req, res){
-      var selectedEvent = req.params.id;
+        var selectedEvent = req.params.id;
         console.log('Delete route called to this id', selectedEvent);
         // errorConnecting is bool, db is what we query against,
         // done is a function that we call when we're done

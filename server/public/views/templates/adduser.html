@@ -1,0 +1,34 @@
+<!--Add a new User Registration Page-->
+<div ng-include="'views/partials/usernav.html'"></div>
+<div class="container">
+  <h2>Add a User</h2>
+  <form ng-submit="lc.addUser()">
+    <div class="form-group">
+      <label for="">User Role</label>
+    <select>
+      <option value="1" ng-model="lc.user.role">Admin</option>
+      <option value="2" ng-model="lc.user.role">User</option>
+    </select>
+    </div>
+    <div class="form-group">
+        <label for="first_name">First Name:</label>
+        <input type="first_name" class="form-control" ng-model="lc.user.first_name" />
+    </div>
+    <div class="form-group">
+        <label for="last_name">Last Name:</label>
+        <input type="last_name" class="form-control" ng-model="lc.user.last_name" />
+    </div>
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" class="form-control" ng-model="lc.user.username" />
+    </div>
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" ng-model="lc.user.email" />
+    </div>
+
+    <input class="btn btn-default" type="submit" name="submit" value="Register" />
+    <a href="#home">Cancel</a>
+  </form>
+
+</div>

@@ -7,8 +7,9 @@ One Paragraph of project description goes here. Link to the live version of the 
 Express
 Node.js
 Postgresql
-AngularJS
-Bootstrap
+AngularJS (https://angularjs.org/)
+Bootstrap (https://getbootstrap.com/docs/3.3/)
+Bootstrap UI (https://angular-ui.github.io/bootstrap/)
 JavaScript
 
 ## Getting Started
@@ -20,20 +21,14 @@ These instructions will get you a copy of the project up and running on your loc
 Link to software that is required to install the app (e.g. node).
 
 - [Node.js](https://nodejs.org/en/)
-- List other prerequisites here
 
 
 ### Installing
 
-Steps to get the development environment running.
+Clone the repo and run npm install in terminal.
 
-```sql
-CREATE TABLE "users" (
-  "id" serial primary key,
-  "username" varchar(80) not null UNIQUE,
-  "password" varchar(240) not null
-);
-```
+*See databaseSetup.sql file for initial table set-up and some dummy data* - Update database information in modules/pool.js
+
 
 ## Screen Shot
 
@@ -47,14 +42,25 @@ Link to a read-only version of your scope document or other relevant documentati
 
 High level list of items completed.
 
-- [x] Feature a
-- [x] Feature b
+- [x] User Registration
+- [x] User RSVP
+- [x] Admin Create Event
+- [x] Admin Delete Event
+- [x] Admin Edit Event
+- [x] Admin Invite Users to Event
 
 ### Next Steps
 
 Features that you would like to add at some point in the future.
 
-- [ ] Feature c
+- [ ] Admin add a user
+- [ ] Forgot Password reset
+- [ ] User profile - edit information
+- [ ] Admin add floor plan
+- [ ] User RSVP to room available for selected dates
+- [ ] User sign-up to bring meals for certain day w/in event
+- [ ] 
+
 
 ## Deployment
 

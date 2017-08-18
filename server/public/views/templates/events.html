@@ -24,11 +24,19 @@
         <th>Event</th>
         <th>Description</th>
         <th>Attending</th>
+        <th>How Many People?</th>
+        <th>Edit RSVP</th>
+        <th>Who's Going?</th>
       </tr>
       <tr ng-repeat="event in ec.eventObject.events" ng-if="event.arrival_date !==null  || event.departure_date !==null  || event.number_attending ==!null ">
         <td>{{event.event_name}}</td>
         <td>{{event.event_description}}</td>
         <td>{{event.arrival_date | date}} - {{event.departure_date | date}}</td>
+        <td>{{event.number_attending}}</td>
+        <td><button type="button" name="button" class="btn btn-warning" ng-click="ec.getPendingEvent(event)">
+          <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button></td>
+        <td><button class="btn btn-primary" type="button" name="button" ng-click="ec.getPeopleAttendingThisEvent(ec.getAllAttending(event))">
+          <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button>
       </tr>
     </table>
     <!-- <h2>Past Events - Not Filtering Yet</h2>

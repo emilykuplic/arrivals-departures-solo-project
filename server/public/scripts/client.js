@@ -94,6 +94,15 @@ myApp.config(function($routeProvider, $locationProvider) {
         }
       }
     })
+    .when('/events/attending', {
+      templateUrl: '/views/templates/usersattending.html',
+      controller: 'EventsController as ec',
+      resolve: {
+        getuser : function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
     .otherwise({
       redirectTo: 'home'
     });

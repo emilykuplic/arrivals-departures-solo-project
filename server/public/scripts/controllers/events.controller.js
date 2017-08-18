@@ -70,14 +70,31 @@ myApp.controller('EventsController', function($http, $location, UserService, Eve
         }); // end success
       }; // end editEvent
 
+
       vm.deleteThisEvent = function(selectedEvent){
-          console.log( 'in deleteEvents functon', selectedEvent);
-          vm.data.selectedEvent = selectedEvent;
+        console.log( 'in deleteEvents functon', selectedEvent);
+        vm.data.selectedEvent = selectedEvent;
+        swal({
+          title: 'Are you sure?',
+          text: "This will delete this event.",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#32CD32',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+        }).then(function () {
           // ajax call to server to get tasks
-          $http.delete('/events/edit/' + selectedEvent.id).then(function(selectedEvent){
+          $http.delete('/events/edit/' + selectedEvent.id).then(function(selectedEvent)
+          {
               getAdminEvents();
+            });
+              swal(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+              );
           }); // end success
-        }; // end deleteThisEvent
+      };// end deleteThisEvent
 
     vm.createEvent = function(createEvent){
         console.log( 'in createEvent functon');
@@ -111,6 +128,7 @@ myApp.controller('EventsController', function($http, $location, UserService, Eve
         $http.get('/events/invite/' + vm.selectedValue).then(function(response){
           vm.allInvitedObject = response.data;
           console.log('events.controller vm.allInvitedObject', vm.allInvitedObject);
+getAllEvents();
         }); // end success
       }; // end getPeopleAttendingEvent
 

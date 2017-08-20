@@ -140,10 +140,10 @@ router.get('/attending/:id', function(req, res){
             console.log('Error making query');
             res.sendStatus(500);
           } else {
-            // console.log(result);
+            console.log('result of ted things', result.rows);
             // Send back the results
-            var data = {invitedPeople: result.rows};
-            res.send(data);
+            
+            res.send(result.rows);
           }
         }); // end query
       } else {

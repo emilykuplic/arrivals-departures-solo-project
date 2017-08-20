@@ -96,7 +96,7 @@ myApp.config(function($routeProvider, $locationProvider) {
     })
     .when('/events/attending', {
       templateUrl: '/views/templates/usersattending.html',
-      controller: 'EventsController as ec',
+      controller: 'AttendingController as ac',
       resolve: {
         getuser : function(UserService){
           return UserService.getuser();

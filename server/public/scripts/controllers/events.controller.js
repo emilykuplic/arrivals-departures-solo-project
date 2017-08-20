@@ -147,6 +147,7 @@ myApp.controller('EventsController', function($http, $location, UserService, Eve
            // ajax call to server to get tasks
            $http.post('/events/invite', info).then(function(response){
              console.log('events.controller vmeventObject');
+      vm.getPeopleAttendingEvent();
 
            }); // end success
 
@@ -171,20 +172,7 @@ myApp.controller('EventsController', function($http, $location, UserService, Eve
           }); // end success
         }; // end getPeopleAttendingEvent
 
-  vm.getPeopleAttendingThisEvent = function(){
-    var event_id = vm.data.selectedEvent.event_id;
-    console.log('getPeopleAttendingEvent function', event_id);
-    console.log( 'in getPeopleAttendingEvent function');
-    // giving the event_id from dropdown
-    console.log('its here');
-    // ajax call to server to get tasks
 
-    $http.get('/events/attending/' + event_id).then(function(response){
-      vm.peopleAttendingObject = response.data;
-      console.log('events.controller vm.peopleAttendingObject', vm.peopleAttendingObject);
-      getAdminEvents();
-    }); // end success
-  }; // end getPeopleAttendingEvent
 
   vm.getAllAttending = function(selectedEvent){
       console.log('in getAllAttending function', selectedEvent);

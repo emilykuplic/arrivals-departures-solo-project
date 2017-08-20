@@ -1,9 +1,9 @@
 <!--User Page Event RSVP-->
 <div ng-include="'views/partials/usernav.html'"></div>
 <div class="container">
-  <h1>{{ec.data.selectedEvent.event_name}}<h1>
-    <h2>{{ec.data.selectedEvent.starting_date | date}} - {{ec.data.selectedEvent.ending_date | date}}</h2>
-    <h3>{{ec.data.selectedEvent.event_description}}</h3>
+  <h1>{{ac.data.selectedEvent.event_name}}<h1>
+    <h2>{{ac.data.selectedEvent.starting_date | date}} - {{ac.data.selectedEvent.ending_date | date}}</h2>
+    <h3>{{ac.data.selectedEvent.event_description}}</h3>
 
 
       <h2>Who's Attending?</h2>
@@ -17,7 +17,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="person in ec.peopleAttendingObject.invitedPeople">
+        <tr ng-repeat="person in ac.peopleArray">
           <td>{{person.first_name}}</td>
           <td>{{person.last_name}}</td>
           <td>{{person.email}}</td>
@@ -25,4 +25,5 @@
         </tr>
         </tbody>
         </table>
+
 </div>

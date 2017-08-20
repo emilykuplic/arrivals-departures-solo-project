@@ -20,6 +20,7 @@
     "bootstrap": "^3.3.5",
     "express": "^4.13.1",
     "express-session": "^1.13.0",
+    "font-awesome": "^4.7.0",
     "jquery": "^2.1.4",
     "nodemailer": "^4.0.1",
     "passport": "^0.2.2",

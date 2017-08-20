@@ -4,24 +4,42 @@
   <h1 class="lead alert alert-danger" role="alert" ng-if="lc.message != ''">{{lc.message}}</h2>
   <form ng-submit="lc.registerUser()">
     <div class="form-group">
-        <label for="first_name">First Name:</label>
+  <label for="username">Username:</label>
+<div class="input-group">
+  <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
+        <input type="text" class="form-control" ng-model="lc.user.username" />
+</div>
+    </div>
+    <div class="form-group">
+  <label for="first_name">First Name:</label>
+      <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-address-card" aria-hidden="true"></i></span>
         <input type="first_name" class="form-control" ng-model="lc.user.first_name" />
     </div>
+    </div>
     <div class="form-group">
-        <label for="last_name">Last Name:</label>
+  <label for="last_name">Last Name:</label>
+      <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-address-card" aria-hidden="true"></i></span>
         <input type="last_name" class="form-control" ng-model="lc.user.last_name" />
     </div>
-    <div class="form-group">
-        <label for="username">Username:</label>
-        <input type="text" class="form-control" ng-model="lc.user.username" />
     </div>
     <div class="form-group">
-        <label for="password">Password:</label>
+    <label for="password">Password:</label>
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-key"></i></span>
+
         <input type="password" class="form-control" ng-model="lc.user.password" />
+</div>
     </div>
     <div class="form-group">
+
         <label for="email">Email:</label>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+
         <input type="email" class="form-control" ng-model="lc.user.email" />
+</div>
     </div>
 
     <input class="btn btn-default" type="submit" name="submit" value="Register" />

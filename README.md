@@ -1,4 +1,4 @@
-# Name of Project
+# Lake Time
 
 One Paragraph of project description goes here. Link to the live version of the app if it's hosted on Heroku.
 
@@ -9,8 +9,12 @@ Node.js
 Postgresql
 AngularJS (https://angularjs.org/)
 Bootstrap (https://getbootstrap.com/docs/3.3/)
-Bootstrap UI (https://angular-ui.github.io/bootstrap/)
 JavaScript
+HTML5
+CSS3
+Font Awesome
+Sweetalerts2
+Google Fonts
 
 ## Getting Started
 
@@ -44,6 +48,7 @@ High level list of items completed.
 
 - [x] User Registration
 - [x] User RSVP
+- [x] User edit RSVP
 - [x] Admin Create Event
 - [x] Admin Delete Event
 - [x] Admin Edit Event
@@ -59,18 +64,14 @@ Features that you would like to add at some point in the future.
 - [ ] Admin add floor plan
 - [ ] User RSVP to room available for selected dates
 - [ ] User sign-up to bring meals for certain day w/in event
-- [ ] 
+- [ ] Increase security
 
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+Will be deployed on Heroku...
+Link: TBD
 
 ## Author
 
 * Emily Kuplic
-
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used

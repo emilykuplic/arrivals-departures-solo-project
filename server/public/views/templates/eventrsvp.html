@@ -8,21 +8,30 @@
 <div class="row">
     <div class="form-group col-sm-6">
       <label for="formArrivalInput">Arrival Date</label>
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
       <input class="form-control" id="formArrivalInput" type="date" name="arrival"
       placeholder="Arrival Date" ng-model="ec.data.selectedEvent.arrival_date">
     </div>
+  </div>
 
     <div class="form-group col-sm-6">
       <label for="formDepartureInput">Departure Date</label>
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
       <input class="form-control" id="formDepartureInput" type="date" name="departure"
       placeholder="Departure Date" ng-model="ec.data.selectedEvent.departure_date">
     </div>
+  </div>
         </div>
     <div class="form-group">
       <label for="formAttendingInput">Number Attending</label>
+      <div class="input-group">
+      <span class="input-group-addon"><i class="fa fa-users" aria-hidden="true"></i></span>
       <input class="form-control" id="formAttendingInput"  type="text" name="attending" placeholder="Number Attending" ng-model="ec.data.selectedEvent.number_attending">
-      <button class="btn btn-default" type="button" name="button" ng-click="ec.rsvpEvent(ec.data.selectedEvent)">Submit RSVP</button>
     </div>
+  </div>
+  <button class="btn btn-default" type="button" name="button" ng-click="ec.rsvpEvent(ec.data.selectedEvent)">Submit RSVP</button>
 
   </form>
 </div>

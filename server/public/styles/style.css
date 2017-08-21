@@ -14,7 +14,12 @@ font-family: 'Alegreya', serif;
  font-size: 58px;
  color: white;
 }
-
+#edit-event {
+  margin-top: 15px;
+}
+.navbar {
+  border-radius: 0px;
+}
 select#soflow, select#soflow-color {
    -webkit-appearance: button;
    -webkit-border-radius: 2px;

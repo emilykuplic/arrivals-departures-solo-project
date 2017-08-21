@@ -4,22 +4,27 @@
 <div class="container">
   <h2>Pending Events</h2>
   <table class="table table-hover">
+      <thead>
     <tr>
       <th>Event</th>
       <th>Description</th>
       <th>Event Dates</th>
       <th></th>
     </tr>
+  </thead>
+  <tbody>
     <tr ng-repeat="event in ec.eventObject.events" ng-if="event.arrival_date == null || event.departure_date == null || event.number_attending == null ">
       <td>{{event.event_name}}</td>
       <td>{{event.event_description}}</td>
       <td>{{event.starting_date | date}} - {{event.ending_date | date}}</td>
       <td><button class="btn btn-default" ng-click="ec.getPendingEvent(event)">RSVP</button></td>
     </tr>
+  </tbody>
   </table>
   <h2>Confirmed Events</h2>
   <table>
     <table class="table table-hover">
+      <thead>
       <tr>
         <th>Event</th>
         <th>Description</th>
@@ -28,6 +33,8 @@
         <th>Edit RSVP</th>
         <th>Who's Going?</th>
       </tr>
+      </thead>
+<tbody>
       <tr ng-repeat="event in ec.eventObject.events" ng-if="event.arrival_date !==null  || event.departure_date !==null  || event.number_attending ==!null ">
         <td>{{event.event_name}}</td>
         <td>{{event.event_description}}</td>
@@ -38,20 +45,7 @@
         <td><button class="btn btn-primary" type="button" name="button" ng-click="ec.getAllAttending(event)">
           <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button>
       </tr>
+    </tbody>
     </table>
-    <!-- <h2>Past Events - Not Filtering Yet</h2>
-    <table>
-      <table class="table table-hover">
-        <tr>
-          <th>Event</th>
-          <th>Description</th>
-          <th>Attended</th>
-        </tr>
-        <tr ng-repeat="event in ec.eventObject.events">
-          <td>{{event.event_name}}</td>
-          <td>{{event.event_description}}</td>
-          <td>{{event.arrival_date | date}} - {{event.departure_date | date}}</td>
-        </tr>
-      </table> -->
     </div>
   </div>

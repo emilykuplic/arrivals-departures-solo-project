@@ -1,28 +1,40 @@
 <!--User Page Create Event-->
 <div ng-include="'views/partials/usernav.html'"></div>
 <div class="container">
-    <form>
-      <h2>Create a Event</h2>
-      <div class="form-group col-md-12">
-        <label for="formEventInput">Event Name</label>
+  <form>
+    <h2>Create a Event</h2>
+    <div class="form-group col-md-12">
+      <label for="formEventInput">Event Name</label>
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-glass"></i></span>
         <input class="form-control" id="formNameInput"  type="text" name="name"
         placeholder="Event Name" ng-model="event.event_name">
       </div>
-      <div class="form-group col-md-12">
-        <label for="formDescriptionInput">Event Description</label>
+    </div>
+    <div class="form-group col-md-12">
+      <label for="formDescriptionInput">Event Description</label>
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
         <input class="form-control" id="formDescriptionInput"  type="text"
         name="description" placeholder="Event Description" ng-model="event.event_description">
       </div>
-      <div class="form-group col-sm-6">
-        <label for="formStartingInput">Starting Date</label>
+    </div>
+    <div class="form-group col-sm-6">
+      <label for="formStartingInput">Starting Date</label>
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
         <input class="form-control" id="formStartingInput" type="date" name="starting" placeholder="Starting Date"
         ng-model="event.starting_date">
       </div>
-      <div class="form-group col-sm-6">
-        <label for="formEndingInput">Ending Date</label>
+    </div>
+    <div class="form-group col-sm-6">
+      <label for="formEndingInput">Ending Date</label>
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
         <input class="form-control" id="formEndingInput" type="date" name="ending" placeholder="Ending Date"
         ng-model="event.ending_date">
       </div>
-    </form>
+    </div>
+  </form>
   <button class="btn btn-default" type="button" ng-click="ec.createEvent(event)">Create Event</button>
-  </div>
+</div>

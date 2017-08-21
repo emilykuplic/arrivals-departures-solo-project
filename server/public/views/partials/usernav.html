@@ -1,9 +1,9 @@
 <div class="navbar" ng-controller="NavController as nc">
   <div class="container">
-    <ul>
+    <ul class="navbar">
       <li ng-if="nc.userObject.role == 2"><a href="#/user">User Home</a></li>
       <li ng-if="nc.userObject.role == 1"><a href="#/admin">Admin Home</a></li>
-      <li><a href="#/events">My Events</a></li>
+      <li> <a href="#/events">My Events</a></li>
       <li ng-if="nc.userObject.role == 1"><a href="#/events/admin">All Events</a></li>
       <li ng-if="nc.userObject.role == 1"><a href="#/events/create">Create a Event</a></li>
       <li ng-if="nc.userObject.role == 1"><a href="#/events/invite">Invite to Event</a></li>

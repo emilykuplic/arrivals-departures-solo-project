@@ -4,6 +4,16 @@ body, html {
   font-family: sans-serif;
   font-size: 14px;
 }
+.app-lake {
+ font-family: 'Lobster Two', cursive;
+ font-size: 58px;
+ color: white;
+}
+.app-time {
+font-family: 'Alegreya', serif;
+ font-size: 58px;
+ color: white;
+}
 
 select#soflow, select#soflow-color {
    -webkit-appearance: button;
@@ -17,7 +27,6 @@ select#soflow, select#soflow-color {
    background-repeat: no-repeat;
    border: 1px solid #AAA;
    border-radius: 5px;
-   color: #555;
    font-size: inherit;
    overflow: hidden;
    padding: 5px 10px;
@@ -31,7 +40,7 @@ select#soflow, select#soflow-color {
 }
 
 .instructions {
-  background-color: #4286f4;
+  background-color: #66ccff;
   color: #DDDDDD;
   padding: 15px;
 }
@@ -72,12 +81,17 @@ select#soflow, select#soflow-color {
   margin-left: 10px;
 }
 
+.btn-view {
+ background-color: navy;
+ color: white;
+}
+
 .footer {
-  background-color: #275193;
+
   width: 100%;
 }
 .navbar {
-  background-color: #275193;
+  background-color: Navy;
   width: 100%;
 }
 
@@ -85,7 +99,7 @@ select#soflow, select#soflow-color {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+
 }
 
 .navbar li {

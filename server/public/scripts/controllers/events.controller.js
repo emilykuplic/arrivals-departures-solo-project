@@ -42,8 +42,19 @@ myApp.controller('EventsController', function($http, $location, UserService, Eve
   function addEvent() {
     swal({
       title: "Success!",
-      text: "The event has been added",
+      text: "This event has been added",
       confirmButtonText: "View Events",
+      type: "success"
+    }).then(function() {
+      window.location.href = "#/events/admin";
+    });
+  }
+
+  function editEvent() {
+    swal({
+      title: "Success!",
+      text: "This event has been updated",
+      confirmButtonText: "View All Events",
       type: "success"
     }).then(function() {
       window.location.href = "#/events/admin";
@@ -101,6 +112,7 @@ myApp.controller('EventsController', function($http, $location, UserService, Eve
     console.log( 'in editEvents functon', selectedEvent);
     // ajax call to server to get tasks
     $http.put('/events/edit', vm.data).then(function(selectedEvent){
+        editEvent();
     }); // end success
   }; // end editEvent
 

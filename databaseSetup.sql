@@ -1,3 +1,5 @@
+CREATE DATABASE solo_project;
+
 CREATE TABLE users (
     id serial PRIMARY KEY,
     username character varying(35) NOT NULL UNIQUE,

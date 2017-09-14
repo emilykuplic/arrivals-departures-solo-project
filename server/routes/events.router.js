@@ -142,7 +142,7 @@ router.get('/attending/:id', function(req, res){
           } else {
             console.log('result of ted things', result.rows);
             // Send back the results
-            
+
             res.send(result.rows);
           }
         }); // end query

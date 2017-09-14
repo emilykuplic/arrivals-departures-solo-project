@@ -24,7 +24,24 @@ These instructions will get you a copy of the project up and running on your loc
 
 Link to software that is required to install the app (e.g. node).
 
-- [Node.js](https://nodejs.org/en/)
+- Node.js (https://nodejs.org/en/)
+- "angular": "^1.6.4",
+- "angular-animate": "^1.6.5",
+- "angular-route": "^1.6.4",
+- "angular-touch": "^1.6.5",
+- "bcrypt": "^1.0.2",
+- "body-parser": "^1.13.3",
+- "bootstrap": "^3.3.5",
+- "express": "^4.13.1",
+- "express-session": "^1.13.0",
+- "font-awesome": "^4.7.0",
+- "jquery": "^2.1.4",
+- "nodemailer": "^4.0.1",
+- "passport": "^0.2.2",
+- "passport-local": "^1.0.0",
+- "path": "^0.11.14",
+- "pg": "^7.1.0",
+- "sweetalert2": "^6.6.8"
 
 
 ### Installing
@@ -38,9 +55,8 @@ Clone the repo and run npm install in terminal.
 
 Include one or two screen shots of your project here (optional). Remove if unused.
 
-## Documentation
+Screen shots coming soon.
 
-Link to a read-only version of your scope document or other relevant documentation here (optional). Remove if unused.
 
 ### Completed Features
 
@@ -58,6 +74,7 @@ High level list of items completed.
 
 Features that you would like to add at some point in the future.
 
+- [ ] Code clean-up
 - [ ] Admin add a user
 - [ ] Forgot Password reset
 - [ ] User profile - edit information
@@ -69,8 +86,7 @@ Features that you would like to add at some point in the future.
 
 ## Deployment
 
-Will be deployed on Heroku...
-Link: TBD
+https://whispering-beyond-98283.herokuapp.com/
 
 ## Author
 

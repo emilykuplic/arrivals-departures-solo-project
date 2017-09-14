@@ -1,6 +1,6 @@
 # Lake Time
 
-One Paragraph of project description goes here. Link to the live version of the app if it's hosted on Heroku.
+Lake Time is an event planning application to help reduce the number of emails exchanged when planning a weekend at the cabin.
 
 ## Built With
 

@@ -1,6 +1,6 @@
 # Lake Time
 
-Lake Time is an event planning application to help reduce the number of emails exchanged when planning a weekend at the cabin.
+Lake Time is an event planning application to help reduce the number of emails exchanged when planning a weekend at the cabin. This application is primarily admin based.
 
 ## Built With
 
